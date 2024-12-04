@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Video Gallery{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center p-3 mb-3 mt-3"> Video Gallery</h1>
+
+    <div class="row">
+        <div class="col">
+            <!-- Video 1 -->
+             <div class="card">
+                <a href="{{ url_for('video', video_name='video1')}}">
+                    <img src="/static/Hase.png" class="card-img-top" alt="hase-thumbnail">
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">Der Hase mit der roten Nase</h5>
+                </div>
+              </div>
+        </div>
+        <div class="col">
+            <!-- Fake 1 -->
+             <div class="card">
+                <a href="{{ url_for('video', video_name='video')}}">
+                    <img src="/static/Eule.png" class="card-img-top" alt="eule-thumbnail">
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">Die Eule mit der Beule</h5>
+                </div>
+              </div>
+        </div>
+        <div class="col">
+            <!-- Fake 2 -->
+             <div class="card">
+                <a href="{{ url_for('video', video_name='video')}}">
+                    <img src="/static/Fisch.png" class="card-img-top" alt="fisch-thumbnail">
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">Der Regenbogenfisch</h5>
+                </div>
+              </div>
+        </div>
+        <div class="col">
+            <!-- Fake 3 -->
+             <div class="card">
+                <a href="{{ url_for('video', video_name='video')}}">
+                    <img src="/static/Raupe.png" class="card-img-top" alt="raupe-thumbnail">
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">Die kleine Raupe Nimmersatt</h5>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="row">
+       
+    </div>
+
+</div>
+<ul>
+    {% for video in videos %}
+    <li>
+        <a href="{{ url_for('video', video_name=video) }}">{{ video }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

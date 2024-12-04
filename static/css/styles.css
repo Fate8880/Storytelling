@@ -1,0 +1,123 @@
+/* Subtitles */
+
+/* Container für alle Vorschauen */
+.subtitle-style-preview {
+  position: relative;
+  cursor: pointer;
+}
+
+.subtitle-style-preview input {
+  display: none; /* Versteckt den Radio-Button */
+}
+
+/* Vorschauen */
+.preview {
+  width: 100px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  user-select: none; /* Text kann nicht markiert werden */
+}
+
+/* Weißer Untertitel mit schwarzer Outline */
+.preview.white-outline {
+  color: white;
+  -webkit-text-stroke: 1px black;
+  background-color: transparent;
+  border: 1px solid black; 
+  border-radius: 8px;
+}
+
+/* Gelber Untertitel mit schwarzer Outline */
+.preview.yellow-outline {
+  color: #FFD700; /* Gelb */
+  -webkit-text-stroke: 1px black;
+  background-color: transparent;
+  border: 1px solid black; 
+  border-radius: 8px;
+}
+
+/* Weißer Text auf schwarzem halbtransparentem Hintergrund */
+.preview.semi-transparent {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 5px;
+}
+
+/* Aktivierter Stil */
+.subtitle-style-preview input:checked + .preview {
+  border-color: #007bff; /* Blaue Umrandung für aktiven Stil */
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+
+/* Size */
+.subtitle-size-preview input {
+  display:none;
+}
+
+.subtitle-size-preview {
+  border: 1px solid black; 
+  border-radius: 8px;
+}
+
+.subtitle-size-preview input:checked + .preview {
+  border-color: #007bff; /* Blaue Umrandung für aktiven Stil */
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+
+
+
+/* Video Player */
+#videoPlayer.white-outline::cue {
+    color: white;
+    text-shadow: 
+        -1px -1px 1px black, 
+        1px -1px 1px black, 
+        -1px 1px 1px black, 
+        1px 1px 1px black;
+    background-color: transparent;
+}
+
+#videoPlayer.yellow-outline::cue {
+    color: #d9a404; /* Dull yellow */
+    text-shadow: 
+        -1px -1px 1px black, 
+        1px -1px 1px black, 
+        -1px 1px 1px black, 
+        1px 1px 1px black;
+    background-color: transparent;
+}
+
+#videoPlayer.semi-transparent::cue {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2px;
+    border-radius: 8px;
+}
+
+
+/* Kleine Untertitel */
+#videoPlayer.small::cue {
+  font-size: 20px;
+}
+
+/* Mittlere Untertitel */
+#videoPlayer.medium::cue {
+  font-size: 30px;
+}
+
+/* Große Untertitel */
+#videoPlayer.large::cue {
+  font-size: 40px;
+}
+
+  

@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% block title %}Profile Settings{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center p-3 mt-3"> Präferenzen </h1>
+<div class="container d-flex justify-content-center" style="max-width: 600px; margin: auto;">
+    <form action="{{ url_for('set_preferences') }}" method="post" 
+          class="w-100 p-5 border rounded bg-light shadow-lg">
+
+
+        <!-- Wiedergabe -->
+        <h2 class="mb-3">Wiedergabe</h2>
+
+        <!-- Piktogramm -->
+        <div class="form-check form-switch mb-3">
+            <label class="form-check-label d-flex align-items-center" for="pikto_enabled">
+                <input type="checkbox" class="form-check-input" id="pikto_enabled" name="pikto_enabled" value="true" 
+                {% if preferences.pikto %}checked{% endif %}>
+                <img src="/static/pikto-icon.png" alt="Audio Symbol" width="40" class="ms-2 me-3">
+                <span class="fw-medium">Erklärbilder&nbsp;</span> einblenden
+            </label>
+        </div>
+
+
+        <div class="mb-4">
+            <label for="speedRange" class="form-label">Wähle eine 
+                <span class="fw-medium">Geschwindigkeit</span> aus: 
+                <span id="sliderValue" class="fw-bold ms-2">1.0</span>
+            </label>
+            <div class="d-flex align-items-center">
+                <img src="/static/slow-icon.png" alt="Langsam Symbol" width="40" class="me-3">
+                <div class="flex-grow-1">
+                    <input type="range" class="form-range" min="0.25" max="2" step="0.25" id="speedRange" name="speed" value="{{ preferences.speed }}">
+                </div>
+                <img src="/static/fast-icon.png" alt="Schnelles Symbol" width="40" class="ms-3">
+            </div>
+        </div>
+
+        <!-- Slider Value ausgeben -->
+        <script>
+            const slider = document.getElementById('speedRange');
+            const sliderValue = document.getElementById('sliderValue');
+        
+            sliderValue.textContent = slider.value;
+        
+            slider.addEventListener('input', function () {
+                sliderValue.textContent = slider.value;
+            });
+        </script>
+
+        <hr class="my-4">
+    
+        <!-- Untertitel -->
+        <h2 class="mt-4 mb-3">Untertitel</h2>
+        <div class="form-check form-switch mb-3">
+            <label class="form-check-label d-flex align-items-center" for="subtitles_enabled">
+                <input type="checkbox" class="form-check-input" id="subtitles_enabled" name="subtitles_enabled" value="true" 
+                {% if preferences.subtitles %}checked{% endif %}>
+                <img src="/static/subtitle-icon.png" alt="Untertitel Symbol" width="40" class="ms-2 me-3">
+                <span class="fw-medium">Untertitel&nbsp;</span> aktivieren
+            </label>
+        </div>
+
+        <div class="mb-4">
+            <p>Wähle einen <span class="fw-medium">Untertitel-Stil</span> aus:</p>
+            <div class="d-flex justify-content-center gap-3">
+                <!-- White Outline -->
+                <label for="style-white-outline" class="subtitle-style-preview">
+                    <input type="radio" id="style-white-outline" name="subtitle_style" value="white-outline" 
+                           {% if preferences.subtitle_style == 'white-outline' %}checked{% endif %}>
+                    <div class="preview white-outline">Hallo!</div>
+                </label>
+        
+                <!-- Semi-Transparent -->
+                <label for="style-semi-transparent" class="subtitle-style-preview">
+                    <input type="radio" id="style-semi-transparent" name="subtitle_style" value="semi-transparent" 
+                           {% if preferences.subtitle_style == 'semi-transparent' %}checked{% endif %}>
+                    <div class="preview semi-transparent">Hallo!</div>
+                </label>
+
+                 <!-- Yellow Outline -->
+                 <label for="style-yellow-outline" class="subtitle-style-preview">
+                    <input type="radio" id="style-yellow-outline" name="subtitle_style" value="yellow-outline" 
+                           {% if preferences.subtitle_style == 'yellow-outline' %}checked{% endif %}>
+                    <div class="preview yellow-outline">Hallo!</div>
+                </label>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <p>Wähle einen <span class="fw-medium">Größe</span> aus:</p>
+            <div class="d-flex justify-content-center gap-3">
+                <!-- Klein -->
+                <label for="size-small" class="subtitle-size-preview">
+                    <input type="radio" id="size-small" name="subtitle_size" value="small"
+                        {% if preferences.subtitle_size == 'small' %}checked{% endif %}>
+                    <div class="preview" style="font-size: small;">Klein</div>
+                </label>
+
+                <!-- Mittel -->
+                <label for="size-medium" class="subtitle-size-preview">
+                    <input type="radio" id="size-medium" name="subtitle_size" value="medium"
+                        {% if preferences.subtitle_size == 'medium' %}checked{% endif %}>
+                    <div class="preview" style="font-size: medium;">Mittel</div>
+                </label>
+
+                <!-- Groß -->
+                <label for="size-large" class="subtitle-size-preview">
+                    <input type="radio" id="size-large" name="subtitle_size" value="large"
+                        {% if preferences.subtitle_size == 'large' %}checked{% endif %}>
+                    <div class="preview" style="font-size: large;">Groß</div>
+                </label>
+            </div>
+        </div>    
+        
+        <hr class="my-4">
+
+        <!-- Audio -->
+        <h2 class="mt-4 mb-3">Audio</h2>
+        <div class="form-check form-switch mb-3">
+            <label class="form-check-label d-flex align-items-center" for="audio_enabled">
+                <input type="checkbox" class="form-check-input" id="audio_enabled" name="audio_enabled" value="true" 
+                {% if preferences.audio %}checked{% endif %}>
+                <img src="/static/audio-icon.png" alt="Audio Symbol" width="40" class="ms-2 me-3">
+                <span class="fw-medium">Ton&nbsp;</span> einschalten
+            </label>
+        </div>
+        <!-- Hintergrundmusik -->
+        <div class="form-check form-switch mb-4">
+            <label class="form-check-label d-flex align-items-center" for="music_enabled">
+                <input type="checkbox" class="form-check-input" id="music_enabled" name="music_enabled" value="true" 
+                {% if preferences.music %}checked{% endif %}>
+                <img src="/static/music-icon.png" alt="Musik Symbol" width="40" class="ms-2 me-3">
+                <span class="fw-medium">Hintergrundmusik&nbsp;</span> einschalten
+            </label>
+        </div>
+
+        
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary" style="float: right;">Speichern</button>
+        </div>
+
+    </form>
+
+</div>
+
+<!-- Alte Version
+<h1>Profile Settings</h1>
+
+<form action="{{ url_for('set_preferences') }}" method="post">
+    <label>Audio:
+        <input type="checkbox" name="audio_enabled" value="true" {% if preferences.audio %}checked{% endif %}>
+    </label><br>
+    <label>Subtitles:
+        <input type="checkbox" name="subtitles_enabled" value="true" {% if preferences.subtitles %}checked{% endif %}>
+    </label><br>
+    <label>Speed:
+        <input type="number" name="speed" min="0.25" max="2.0" step="0.25" value="{{ preferences.speed }}">
+    </label><br>
+    <label>Piktogramms:
+        <input type="checkbox" name="pikto_enabled" value="true" {% if preferences.pikto %}checked{% endif %}>
+    </label><br>
+
+    <label>Select Subtitle Style:</label><br>
+    <label>
+        <input type="radio" name="subtitle_style" value="white-outline" 
+        {% if preferences.subtitle_style == 'white-outline' %}checked{% endif %}>
+        <div class="preset-preview white-outline">Hallo!</div>
+    </label><br>
+
+    <label>
+        <input type="radio" name="subtitle_style" value="yellow-outline" 
+        {% if preferences.subtitle_style == 'yellow-outline' %}checked{% endif %}>
+        <div class="preset-preview yellow-outline">Hallo!</div>
+    </label><br>
+
+    <label>
+        <input type="radio" id="preset-semi-transparent" name="subtitle_style" value="semi-transparent" 
+        {% if preferences.subtitle_style == 'semi-transparent' %}checked{% endif %}>
+        <div class="preset-preview semi-transparent">Hallo!</div>
+    </label><br>
+
+-->
+
+    <!--
+    <fieldset>
+        <legend>Subtitle Style</legend>
+        <label for="font_size">Font Size:</label>
+        <select name="font_size" id="font_size">
+            <option value="small" {% if preferences.subtitle_style.font_size == 'small' %}selected{% endif %}>Small</option>
+            <option value="medium" {% if preferences.subtitle_style.font_size == 'medium' %}selected{% endif %}>Medium</option>
+            <option value="large" {% if preferences.subtitle_style.font_size == 'large' %}selected{% endif %}>Large</option>
+        </select><br>
+         
+        <label for="font_family">Font Family:</label>
+        <input type="text" name="font_family" id="font_family" value="{{ preferences.subtitle_style.font_family }}"><br>
+       
+        <label for="text_color">Text Color:</label>
+        <select name="text_color" id="text_color">
+            <option value="white" {% if preferences.subtitle_style.text_color == 'white' %}selected{% endif %}>White</option>
+            <option value="black" {% if preferences.subtitle_style.text_color == 'black' %}selected{% endif %}>Black</option>
+            <option value="yellow" {% if preferences.subtitle_style.text_color == 'yellow' %}selected{% endif %}>Yellow</option>
+        </select><br>
+        
+        <label for="background_color">Background Color:</label>
+        <select name="background_color" id="background_color">
+            <option value="black" {% if preferences.subtitle_style.background_color == 'black' %}selected{% endif %}>Black</option>
+            <option value="transparent" {% if preferences.subtitle_style.background_color == 'transparent' %}selected{% endif %}>Transparent</option>
+        </select><br>
+   
+
+    </fieldset>
+    <button type="submit">Save Preferences</button>
+</form>
+-->
+
+{% endblock %}

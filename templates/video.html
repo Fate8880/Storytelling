@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Video Player{% endblock %}
+
+{% block content %}
+
+    <div class="container py-5">
+        <!-- Video Titel -->
+        <h1 class="text-center mb-4"> Der <span style="color: blue">Hase</span> mit der <span style="color:red">roten Nase</span></h1>
+
+        <!-- Video -->
+        <div class="d-flex justify-content-center">
+            <video id="videoPlayer" width="80%" height="auto" controls {{ 'muted' if not audio else '' }}>
+                {% set final_video_src = video_src.split('.')[0] + 'b.mp4' if pikto else video_src %}
+                <source src="{{ url_for('static', filename=final_video_src) }}" type="video/mp4">
+                <track id="subtitleTrack" kind="subtitles" src="{{ url_for('static', filename=subtitle_src) }}" srclang="de" label="Deutsch" default>
+            </video>
+        </div>
+
+    </div>
+
+    <!-- Hintergrundmusik -->
+    <audio id="backgroundMusic" loop>
+        <source src="{{ url_for('static', filename='background-music.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Set playback speed
+        const videoPlayer = document.getElementById('videoPlayer');
+        const subtitleTrack = document.getElementById('subtitleTrack');
+        videoPlayer.playbackRate = {{ speed }};
+
+        // Enable or disable subtitles
+        if (subtitleTrack) {
+            const subtitlesEnabled = {{ 'true' if subtitles else 'false' }};
+            subtitleTrack.track.mode = subtitlesEnabled ? 'showing' : 'hidden';
+        }
+
+        // Untertitel immer verfügbar machen
+        videoPlayer.addEventListener('loadedmetadata', function () {
+        if (subtitleTrack) {
+            // Don't overwrite user's preferences, keep the track available
+            if (subtitleTrack.track.mode === 'hidden') {
+                subtitleTrack.track.mode = 'hidden';
+            }
+        }
+        });
+        
+        // Set subtitle style
+        videoPlayer.classList.add('{{ subtitle_style }}');
+
+        // Subtitle Size
+        videoPlayer.classList.add('{{ subtitle_size}}');
+
+
+        // Hintergrundmusik
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        backgroundMusic.volume = 0.04;
+        const musicEnabled = {{ 'true' if music else 'false' }};
+        console.log("Music Enabled:", musicEnabled);
+
+         // Event Listener für Video-Start
+        videoPlayer.addEventListener('play', () => {
+            if (musicEnabled) {
+                backgroundMusic.play();
+            }
+        });
+
+        // Event Listener für Video-Pause
+        videoPlayer.addEventListener('pause', () => {
+            backgroundMusic.pause();
+        });
+
+        // Stoppe die Musik, wenn das Video endet
+        videoPlayer.addEventListener('ended', () => {
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
+        });
+    </script>
+
+
+<!-- Präferenzen -->    
+<!--
+    <form action="{{ url_for('set_preferences') }}" method="post">
+        <input type="hidden" name="video_name" value="{{ video_src.split('.')[0] }}">
+        <label>Audio:
+            <input type="checkbox" name="audio_enabled" value="true" {% if audio %}checked{% endif %}>
+        </label><br>
+        <label>Subtitles:
+            <input type="checkbox" name="subtitles_enabled" value="true" {% if subtitles %}checked{% endif %}>
+        </label><br>
+        <label>Speed:
+            <input type="number" name="speed" min="0.25" max="2.0" step="0.25" value="{{ speed }}">
+        </label><br>
+        <button type="submit">Save Preferences</button>
+    </form>
+
+    <script>
+        // Set playback speed
+        const videoPlayer = document.getElementById('videoPlayer');
+        videoPlayer.playbackRate = {{ speed }};
+
+        // Enable or disable subtitles
+        {% if subtitles %}
+        const subtitleTrack = document.getElementById('subtitleTrack');
+        subtitleTrack.track.mode = 'showing';
+        {% else %}
+        const subtitleTrack = document.getElementById('subtitleTrack');
+        if (subtitleTrack) {
+            subtitleTrack.track.mode = 'hidden';
+        }
+        {% endif %}
+
+        // Set subtitle style
+        videoPlayer.classList.add('{{ subtitle_style }}');
+    </script>
+-->
+    
+{% endblock%}

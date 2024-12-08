@@ -6,7 +6,13 @@
 
     <div class="container py-5">
         <!-- Video Titel -->
-        <h1 class="text-center mb-4"> Der <span style="color: blue">Hase</span> mit der <span style="color:red">roten Nase</span></h1>
+        {% if video_src.split('.')[0] == 'video1' %}
+            <h1 class="text-center mb-4"> Der <span style="color: blue">Hase</span> mit der <span style="color:red">roten Nase</span></h1>
+        {% elif video_src.split('.')[0] == 'video2' %}
+            <h1 class="text-center mb-4"> Die kleine <span style="color: green"> Raupe Nimmersatt </span> Raupe Nimmersatt </h1>
+        {% else %} 
+            <h1 class="text-center mb-4"> Dieses Video ist leider noch nicht verfügbar! </h1>   
+        {% endif %}    
 
         <!-- Video -->
         <div class="d-flex justify-content-center">

@@ -1,14 +1,74 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}SignTales{% endblock %}
 
 {% block content %}
-<h1>Home Page</h1>
 
-<ul>
-TODO:
-    <li>Wenn man bei den Video Präferenzen umstellt, dann sind Piktogramme weg</li>
-    <li>Drop down mobile menu in Login entfernen, wenn in der Navigationsleiste nichts ist </li>
-</ul>
+<div class="container py-5">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Willkommen bei <span class="text-primary">SignTales!</span></h1>
+        <p class="lead">Scanne deine Figur, um eine spannende Geschichte zu erleben!</p>
+        <p class="lead">Logge dich ein, um deine Präferenzen zu speichern!</p>
+    </div>
 
+<!-- Funktionen / Features (1-3 Schritte) -->
+<div class="row mt-5">
+  <!-- Schritt 1 -->
+  <div class="col-md-4 text-center">
+      <img src="/static/1. Figur.png" alt="Wähle eine Figur" class="img-fluid mb-3">
+      <h4 class="fw-bold">1. Wähle deine Figur</h4>
+      <p>Wähle deine Lieblingsfigur aus einer Vielzahl von niedlichen Tierfiguren.</p>
+  </div>
+
+  <!-- Schritt 2 -->
+  <div class="col-md-4 text-center">
+      <img src="/static/2. Scanne.png" alt="Scanne die Figur" class="img-fluid mb-3">
+      <h4 class="fw-bold">2. Scanne die Figur</h4>
+      <p>Stelle die Figur auf die SignTales Box.</p>
+  </div>
+
+  <!-- Schritt 3 -->
+  <div class="col-md-4 text-center">
+      <img src="/static/Hase.png" alt="Spiele eine Geschichte" class="img-fluid mb-3">
+      <h4 class="fw-bold">3. Genieße die Geschichte</h4>
+      <p>Erlebe spannende Geschichten in Gebärdensprache.</p>
+  </div>
+</div>
+
+
+<!-- Bild-Carousel -->
+<div id="imageCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+      
+      <div class="carousel-item active">
+          <img src="/static/Hand Schmetterling.jpg" class="d-block w-100" alt="Bild der SignTales Box">
+      </div>
+
+      <div class="carousel-item">
+          <img src="/static/Hand.jpg" class="d-block w-100" alt="Bild der Figuren">
+      </div>
+
+      <div class="carousel-item">
+          <img src="/static/Hand Hase.jpg" class="d-block w-100" alt="Bild der interaktiven Geschichte">
+      </div>
+
+  </div>
+
+  <!-- Steuerungselemente (vor/zurück) -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Vorheriges</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Nächstes</span>
+  </button>
+</div>
+
+    <!-- Footer -->
+    <footer class="mt-5 text-center text-muted">
+        <small>&copy; 2024 SignTales. Alle Rechte vorbehalten. | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></small>
+    </footer>
+</div>
 {% endblock %}

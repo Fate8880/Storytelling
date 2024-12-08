@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Video Gallery{% endblock %}
+{% block title %}Video Gallerie{% endblock %}
 
 {% block content %}
 
 <div class="container">
-    <h1 class="text-center p-3 mb-3 mt-3"> Video Gallery</h1>
+    <h1 class="text-center p-3 mb-3 mt-3"> Video Gallerie</h1>
 
     <div class="row">
         <div class="col">
@@ -44,7 +44,7 @@
         <div class="col">
             <!-- Fake 3 -->
              <div class="card">
-                <a href="{{ url_for('video', video_name='video')}}">
+                <a href="{{ url_for('video', video_name='video2')}}">
                     <img src="/static/Raupe.png" class="card-img-top" alt="raupe-thumbnail">
                 </a>
                 <div class="card-body">
@@ -59,6 +59,8 @@
     </div>
 
 </div>
+
+<!--
 <ul>
     {% for video in videos %}
     <li>
@@ -66,4 +68,6 @@
     </li>
     {% endfor %}
 </ul>
+-->
+
 {% endblock %}

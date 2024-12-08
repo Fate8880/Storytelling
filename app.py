@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response, redirect, url_for, session, flash
+from flask import Flask, render_template, request, make_response, redirect, url_for, session
 
 app = Flask(__name__)
 app.secret_key = 'secret'

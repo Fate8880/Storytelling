@@ -125,13 +125,13 @@ users = {
     'user2': {
         'password': 'pass2',
         'preferences': {
-            'audio': False, 
-            'subtitles': True, 
-            'speed': 0.75,
-            'pikto': False,
+            'audio': True, 
+            'subtitles': False, 
+            'speed': 1.0,
+            'pikto': True,
             'subtitle_style':'white-outline',
             'subtitle_size': 'large',
-            'music': True
+            'music': False
         }
     }
 }   

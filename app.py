@@ -113,12 +113,12 @@ users = {
         'password': 'pass1', 
         'preferences': {
             'audio': True, 
-            'subtitles': False, 
+            'subtitles': True, 
             'speed': 1.0,
             'pikto': True,
             'subtitle_style': 'semi-transparent', # white-outline, yellow-outline, semi-transparent
             'subtitle_size': 'medium',
-            'music': True
+            'music': False
         }
     },
 
@@ -126,11 +126,11 @@ users = {
         'password': 'pass2',
         'preferences': {
             'audio': True, 
-            'subtitles': False, 
+            'subtitles': True, 
             'speed': 1.0,
             'pikto': True,
-            'subtitle_style':'white-outline',
-            'subtitle_size': 'large',
+            'subtitle_style':'semi-transparent',
+            'subtitle_size': 'medium',
             'music': False
         }
     }

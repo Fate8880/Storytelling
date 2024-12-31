@@ -85,6 +85,7 @@
         -1px 1px 1px black, 
         1px 1px 1px black;
     background-color: transparent;
+    font-family: Arial, sans-serif;
 }
 
 #videoPlayer.yellow-outline::cue {
@@ -95,6 +96,7 @@
         -1px 1px 1px black, 
         1px 1px 1px black;
     background-color: transparent;
+    font-family: Arial, sans-serif;
 }
 
 #videoPlayer.semi-transparent::cue {
@@ -102,6 +104,7 @@
     background-color: rgba(0, 0, 0, 0.7);
     padding: 2px;
     border-radius: 8px;
+    font-family: Arial, sans-serif;
 }
 
 
